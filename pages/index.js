@@ -23,13 +23,13 @@ export default function Home() {
         <meta property="og:url" content="https://mrrobot-quiz.xandowski.vercel.app/" key="url"/>
         <meta property="og:title" content="Mr.robot" key="ogtitle"/>
         <meta property="og:description" content="" key="ogdescription"/>
-        <meta property="og:image" content="" key="ogimage"/>
+        <meta property="og:image" content={db.bg} key="ogimage"/>
 
         <meta property="twitter:card" content="summary_large_image" key="twittercard"/>
         <meta property="twitter:url" content="https://mrrobot-quiz.xandowski.vercel.app/" key="twitterurl"/>
         <meta property="twitter:title" content="Mr.robot" key="twittertitle"/>
         <meta property="twitter:description" content="" key="twitterdescription"/>
-        <meta property="twitter:image" content="" key="twitterimage"/>
+        <meta property="twitter:image" content={db.bg} key="twitterimage"/>
       </Head>
       <QuizContainer>
         <QuizLogo/>
