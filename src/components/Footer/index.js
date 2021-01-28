@@ -3,14 +3,11 @@ import styled from 'styled-components'
 // src/components/Footer/index.js
 const FooterWrapper = styled.footer`
   background-color: #00000070;
-  padding: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   border-radius: 4px;
-  position: absolute;
-  bottom: 0;
   width: 100%;
   img {
     width: 58px;
@@ -28,12 +25,12 @@ const FooterWrapper = styled.footer`
       text-decoration: underline;
     }
   }
-`;
+`
 
 export default function Footer(props) {
   return (
     <FooterWrapper {...props}>
-      <div style={{display: 'flex', alignItems: 'center'}}>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
         <a href="https://www.alura.com.br/">
           <img src="https://www.alura.com.br/assets/img/alura-logo-white.1570550707.svg" alt="Logo Alura" />
         </a>
@@ -47,7 +44,10 @@ export default function Footer(props) {
           </a>
         </p>
       </div>
-      <span>by <a href="https://github.com/Xandowski">Xandowski</a></span>
+      <span>
+        by
+        <a href="https://github.com/Xandowski">Xandowski</a>
+      </span>
     </FooterWrapper>
-  );
+  )
 }
