@@ -1,5 +1,7 @@
 import React from 'react'
+import Lottie from 'react-lottie'
 import db from '../../db.json'
+import animationData from '../../animation.json'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 
@@ -14,11 +16,24 @@ const screenStates = {
 }
 
 const QuizPage = () => {
+  const [animationState, setAnimationState] = useState({
+    isStopped: false, isPaused: false
+  })
   const [screenState, setScreenState] = useState(screenStates.LOADING)
   const router = useRouter()
   const [questionIndex, setQuestionIndex] = useState(0)
   const question = db.questions[questionIndex]
   const questionId = `question__${questionIndex+1}`
+
+  const defaultOptions = {
+    loop: false,
+    autoplay: true, 
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice'
+    },
+    speed: 1.5,
+  }
 
   useEffect(() => {
     setTimeout(() => {
@@ -82,7 +97,13 @@ const QuizPage = () => {
                 router.push(`/quiz?name=${name}`)
               }}
               element={
-                <h1>Testando</h1>
+                <Lottie
+                  options={defaultOptions}
+                  height={250}
+                  width={250}
+                  isStopped={animationState.isStopped}
+                  isPaused={animationState.isPaused}
+                />
               }
             />
           }
