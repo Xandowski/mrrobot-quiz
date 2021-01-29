@@ -1,10 +1,10 @@
 {
-  "bg": "https://wallpapercave.com/wp/wp4507675.jpg",
+  "bg": "/images/mr-robot.jpg",
   "title": "Mr.Robot Quiz",
   "description": "Teste os seus conhecimentos sobre a série Mr.Robot",
   "questions": [
     {
-      "image": "https://media.giphy.com/media/eLvDRp6ipJfEoP0OmI/giphy.gif",
+      "image": "/images/gif-question1.webp",
       "title": "Qual é o nome do grupo secreto que ajuda Whiterose?",
       "description": "Essa é pra aquecer",
       "answer": 1,
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "image": "https://media.giphy.com/media/3zz2ihAv6L1HEE1U4G/giphy.gif",
+      "image": "/images/gif-question2.webp",
       "title": "Qual é o nome da mãe de Elliot?",
       "description": "Lembra dessa?",
       "answer": 0,
@@ -28,7 +28,7 @@
       ]
     },
     {
-      "image": "https://media.giphy.com/media/rKydlqfyxtjRS/giphy.gif",
+      "image": "/images/gif-question3.webp",
       "title": "Qual é o filme que Darlene e Elliote assistem todo Halloween?",
       "description": "Nunca assisti",
       "answer": 2,
@@ -40,7 +40,7 @@
       ]
     },
     {
-      "image": "https://media.giphy.com/media/l41Ys4Fb5r8hcPhde/giphy.gif",
+      "image": "/images/gif-question4.webp",
       "title": "O que aconteceu no hack do dia 5/9?",
       "description": "Bem que eu queria",
       "answer": 2,
@@ -52,7 +52,7 @@
       ]
     },
     {
-      "image": "https://media.giphy.com/media/WiM5K1e9MtEic/giphy.gif",
+      "image": "/images/gif-question5.webp",
       "title": "Quem ajudou o Fsociety a hackear o FBI?",
       "description": "Essa ta fácil",
       "answer": 3,

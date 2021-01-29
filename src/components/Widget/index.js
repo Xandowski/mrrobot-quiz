@@ -67,10 +67,6 @@ WidgetBase.Content = styled.div`
   p{
     width: 100%;
   }
-  a{
-    text-decoration: none;
-    color: ${({ theme }) => theme.colors.secondary};
-  }
   form{
     display: flex;
     flex-direction: column;
@@ -78,6 +74,7 @@ WidgetBase.Content = styled.div`
     align-items: center;
 
     label {
+      color: ${({ theme }) => theme.colors.contrastText};
       &[data-selected="true"] {
         background-color: ${({ theme }) => `${theme.colors.primaryLight}`};
 

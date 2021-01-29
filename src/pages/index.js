@@ -44,9 +44,12 @@ export default function Home() {
           description='De uma olhada nesses outros quizes relacionados a filmes e séries, feito pelo pessoal da Imersão React:'
           element={
             db.external.map((link, index)=> {
+              const [projectName, githubUser] = link.replace(/^(?:https?:\/\/)|(.vercel.app\/)/g, '').split('.')
               return <Options 
                 key={index}
                 links={link}
+                user={githubUser}
+                project={projectName}
               />
             })
           }

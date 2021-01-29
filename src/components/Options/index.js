@@ -3,7 +3,7 @@ import styled from 'styled-components'
 const OptionsBase = styled.a`
   outline: 0;
   text-decoration: none;
-  color: ${({ theme }) => theme.colors.contrastText};
+  color: white;
   background-color: ${({ theme }) => `${theme.colors.primaryDark}`};
   padding: 10px 15px;
   margin-bottom: 8px;
@@ -17,28 +17,24 @@ const OptionsBase = styled.a`
     display: none;
   }
 
-  a{
-    color: white;
-  }
-
   &:hover,
   &:focus {
     background-color: ${({ theme }) => `${theme.colors.primaryLight}`};
   }
 `
 
-const Options = ({alternativeId, input, alternative, links, dataSelected, dataStatus}) =>{
+const Options = ({alternativeId, input, alternative, user, project, dataSelected, dataStatus, as}) =>{
   
   return(
     <OptionsBase
-      as="label"
+      as={as}
       htmlFor={alternativeId}
       data-selected={dataSelected}
       data-status={dataStatus}
     >
       {input}
       {alternative}
-      {<a href={links}>{links}</a>}
+      {user && project && `${user}/${project}`}
     </OptionsBase>
   )
 }

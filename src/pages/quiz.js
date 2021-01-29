@@ -100,7 +100,7 @@ const QuizPage = () => {
 
                 if(selectedAlternative === question.answer){
                   setPoints(points+10)
-                  setImage('https://media.giphy.com/media/l4EpkVLqUj8BI7OV2/giphy.gif')
+                  setImage('/images/gif-correct-question.webp')
                   setDescription(
                     <Lottie
                       options={defaultCorrectOptions}
@@ -111,7 +111,7 @@ const QuizPage = () => {
                     />
                   )
                 } else {
-                  setImage('https://media.giphy.com/media/8hY1xmC9NIoDu/giphy.gif')
+                  setImage('/images/gif-wrong-question.webp')
                   setDescription(
                     <Lottie
                       options={defaultWrongOptions}
@@ -136,6 +136,7 @@ const QuizPage = () => {
                   console.log(isCorrect);
                   return <Options
                     key={index}
+                    as="label"
                     htmlFor={alternativeId}
                     dataSelected={isSelected}
                     dataStatus={isQuestionSubmited && alternativeStatus}
