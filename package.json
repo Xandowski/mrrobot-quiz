@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "next": "latest",
+    "next-images": "^1.7.0",
     "nextjs-fonts": "^0.22.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.0",

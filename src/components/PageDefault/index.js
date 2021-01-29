@@ -1,14 +1,15 @@
 import React, { Children } from 'react'
 import PlayButton from '../QuizButton'
+import db from '../../../db.json'
 import Footer from '../Footer'
 import GitHubCorner from '../GitHubCorner'
 import QuizBackground from '../QuizBackground'
 import QuizContainer from '../QuizContainer'
 import QuizLogo from '../QuizLogo'
 
-const PageDefault = ({bg, widget}) => {
+const PageDefault = ({widget}) => {
   return (
-    <QuizBackground backgroundImage={bg}>
+    <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
         <QuizLogo />
         {widget}

@@ -9,14 +9,6 @@ const WidgetBase = styled.div`
   /* width: 35%; */
   border-radius: 4px;
   overflow: hidden;
-  h1, h2, h3 {
-    font-family: 'MrRobot';
-    letter-spacing: 3px;
-    font-size: 20px;
-    font-weight: normal;
-    line-height: 1;
-    margin-bottom: 0;
-  }
   p {
     font-size: 14px;
     font-weight: 400;
@@ -30,10 +22,17 @@ const WidgetBase = styled.div`
 
 WidgetBase.Header = styled.header`
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   padding: 18px 32px;
   background-color: ${({ theme }) => theme.colors.primary};
+  h1, h2, h3 {
+    font-family: 'MrRobot';
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 1;
+    margin-bottom: 0;
+  }
   
   * {
     margin: 0;
@@ -55,6 +54,18 @@ WidgetBase.Content = styled.div`
   ul {
     list-style: none;
     padding: 0;
+  }
+  h1, h2, h3 {
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 1;
+    margin-bottom: 0;
+  }
+  p, h2 {
+    padding: 0 7px;
+  }
+  p{
+    width: 100%;
   }
   a{
     text-decoration: none;
@@ -87,7 +98,7 @@ WidgetBase.Topic = styled.a`
   }
 `
 
-const Widget = ({headerTitle, description, onSubmit, element, link, disabled, text, img, question, fontSize}) => {
+const Widget = ({headerTitle, description, onSubmit, element, link, disabled, text, img, question}) => {
   return (
     <WidgetBase>
       <WidgetBase.Header>
@@ -104,11 +115,11 @@ const Widget = ({headerTitle, description, onSubmit, element, link, disabled, te
         <form onSubmit={onSubmit}>
           {element}
           {text && 
-            <PlayButton fontSize={fontSize} disabled={disabled} text={text}/>
+            <PlayButton disabled={disabled} text={text}/>
           }
         </form>
         {link && (
-          link
+          <a href={link}>Voltar para home</a>
         )}
       </WidgetBase.Content>
     </WidgetBase>

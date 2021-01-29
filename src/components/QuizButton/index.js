@@ -6,6 +6,8 @@ const Button = styled.button`
   background-color: ${({ theme }) => theme.colors.secondary};
   border: none;
   color: #fff;
+  font-family: 'MrRobot';
+  font-weight: normal;
   font-size: ${props => props.fontSize ? 18 : 20};
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -23,9 +25,9 @@ const Button = styled.button`
   }
   }
 `
-const PlayButton = ({disabled, text, fontSize}) => {
+const PlayButton = ({disabled, text}) => {
   return (
-    <Button fontSize type='submit' disabled={disabled}>
+    <Button type='submit' disabled={disabled}>
       {text}
     </Button>
   )

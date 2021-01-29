@@ -11,15 +11,17 @@ export default function Home() {
   let [name, setName] = useState('')
 
   return (
-    <PageDefault 
-      bg={db.bg}
+    <PageDefault
       widget={
         <Widget
           headerTitle={db.title}
           description={db.description}
           onSubmit={function (e) {
             e.preventDefault()
-            router.push(`/quiz?name=${name}`)
+            router.push({
+              pathname: '/quiz',
+              query: {name: name}
+            })
           }}
           element={
             <Input

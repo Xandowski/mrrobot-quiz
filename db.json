@@ -41,7 +41,7 @@
     },
     {
       "image": "https://media.giphy.com/media/l41Ys4Fb5r8hcPhde/giphy.gif",
-      "title": "O que o hack 5/9 realmente fez?",
+      "title": "O que aconteceu no hack do dia 5/9?",
       "description": "Bem que eu queria",
       "answer": 2,
       "alternatives": [
@@ -55,7 +55,7 @@
       "image": "https://media.giphy.com/media/WiM5K1e9MtEic/giphy.gif",
       "title": "Quem ajudou o Fsociety a hackear o FBI?",
       "description": "Essa ta fácil",
-      "answer": 0,
+      "answer": 3,
       "alternatives": [
          "Dom",
          "Darlene",
