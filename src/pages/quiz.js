@@ -14,8 +14,7 @@ import Widget from '../components/Widget'
 const screenStates = {
   QUIZ: 'QUIZ',
   LOADING: 'LOADING',
-  CORRECT: 'CORRECT',
-  INCORRECT: 'INCORRECT'
+  RESULT: 'RESULT',
 }
 
 const QuizPage = () => {
@@ -76,13 +75,8 @@ const QuizPage = () => {
   const handleSubmit = () => {
     if(questionIndex === 4) {
       setQuestionIndex(0)
-      router.push({
-        pathname: '/result',
-        query: {
-          points: points,
-          name: name
-        }
-      })
+      setScreenState(screenStates.RESULT)
+      setDescription(name)
       return
     }
     setQuestionIndex(questionIndex+1)
@@ -182,6 +176,27 @@ const QuizPage = () => {
             />
           }
         />
+      )}
+
+      {screenState === screenStates.RESULT && (
+        <PageDefault
+          widget={
+            <Widget
+              headerTitle='Resultado'
+              question={`Você fez ${points} pontos`}
+              description={description}
+              onSubmit={function (e) {
+                e.preventDefault()
+                router.push(`/quiz?name=${name}`)
+              }}
+              element={
+                <h1>Ranking</h1>
+              }
+              text='Adicionar ao meu projeto'
+              link='/'
+            />
+        }
+      />
       )}
       
     </>
