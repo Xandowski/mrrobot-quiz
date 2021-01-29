@@ -5,6 +5,7 @@ import { useState } from 'react'
 import PageDefault from '../components/PageDefault'
 import Input from '../components/Input'
 import Widget from '../components/Widget'
+import Options from '../components/Options'
 
 export default function Home() {
   const router = useRouter()
@@ -35,6 +36,20 @@ export default function Home() {
           }
           disabled={name.length === 0}
           text='Jogar'
+        />
+      }
+      quizesGalera={
+        <Widget
+          headerTitle='Quizes da galera'
+          description='De uma olhada nesses outros quizes relacionados a filmes e séries, feito pelo pessoal da Imersão React:'
+          element={
+            db.external.map((link, index)=> {
+              return <Options 
+                key={index}
+                links={link}
+              />
+            })
+          }
         />
       }
     />

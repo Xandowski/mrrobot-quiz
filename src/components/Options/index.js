@@ -17,21 +17,28 @@ const OptionsBase = styled.a`
     display: none;
   }
 
+  a{
+    color: white;
+  }
+
   &:hover,
   &:focus {
     background-color: ${({ theme }) => `${theme.colors.primaryLight}`};
   }
 `
 
-const Options = ({alternativeId, input, alternative}) =>{
+const Options = ({alternativeId, input, alternative, links, dataSelected, dataStatus}) =>{
   
   return(
     <OptionsBase
       as="label"
       htmlFor={alternativeId}
+      data-selected={dataSelected}
+      data-status={dataStatus}
     >
       {input}
       {alternative}
+      {<a href={links}>{links}</a>}
     </OptionsBase>
   )
 }

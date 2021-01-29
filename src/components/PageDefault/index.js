@@ -7,12 +7,13 @@ import QuizBackground from '../QuizBackground'
 import QuizContainer from '../QuizContainer'
 import QuizLogo from '../QuizLogo'
 
-const PageDefault = ({widget}) => {
+const PageDefault = ({widget, quizesGalera}) => {
   return (
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
         <QuizLogo />
         {widget}
+        {quizesGalera}
       </QuizContainer>
       <Footer />
       <GitHubCorner projectUrl="https://github.com/Xandowski/mrrobot-quiz" />

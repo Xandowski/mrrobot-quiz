@@ -96,7 +96,7 @@ const QuizPage = () => {
               description={description}
               onSubmit={(e) => {
                 e.preventDefault()
-                setIsQuestionSubmited(true)
+                
 
                 if(selectedAlternative === question.answer){
                   setPoints(points+10)
@@ -122,17 +122,23 @@ const QuizPage = () => {
                     />
                   )
                 }
-
+                setIsQuestionSubmited(true)
                 setTimeout(() => {
+                  setIsQuestionSubmited(false)
                   handleSubmit()
                 }, 2 * 1000)
               }}
               element={
                 question.alternatives.map((alternative, index) => {
                   const alternativeId = `alternative__${index}`
+                  const alternativeStatus = isCorrect ? 'SUCCESS' : 'ERROR'
+                  const isSelected = selectedAlternative === index
+                  console.log(isCorrect);
                   return <Options
                     key={index}
                     htmlFor={alternativeId}
+                    dataSelected={isSelected}
+                    dataStatus={isQuestionSubmited && alternativeStatus}
                     input={
                       <input 
                         type="radio"

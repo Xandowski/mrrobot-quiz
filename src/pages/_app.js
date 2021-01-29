@@ -19,6 +19,9 @@ const GlobalStyle = createGlobalStyle`
   html, body {
     min-height: 100vh;
   }
+  a{
+    text-decoration: none;
+  }
   #__next {
     flex: 1;
     display: flex;

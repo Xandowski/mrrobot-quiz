@@ -76,6 +76,20 @@ WidgetBase.Content = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
+    label {
+      &[data-selected="true"] {
+        background-color: ${({ theme }) => `${theme.colors.primaryLight}`};
+
+        &[data-status="SUCCESS"] {
+          background-color: ${({ theme }) => `${theme.colors.success}`};
+        }
+
+        &[data-status="ERROR"] {
+          background-color: ${({ theme }) => `${theme.colors.error}`};
+        }
+      }
+    }
   }
 `
 
@@ -111,7 +125,7 @@ const Widget = ({headerTitle, description, onSubmit, element, link, disabled, te
         {question &&
           <h2>{question}</h2>
         }
-        <p>{description}</p>
+        <div>{description}</div>
         <form onSubmit={onSubmit}>
           {element}
           {text && 

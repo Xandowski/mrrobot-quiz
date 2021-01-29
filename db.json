@@ -65,7 +65,9 @@
     }
   ],
   "external": [
-    ""
+    "https://lotr-quiz.filipe1309.vercel.app/",
+    "https://quiz.rafalmeida73.vercel.app/",
+    "https://supernatural-quiz.pedro-murilo.vercel.app/"
   ],
   "theme": {
     "colors": {
@@ -78,7 +80,7 @@
       "mainBgLight": "#1F264F",
       "selectedOption": "#3F51B5",
       "contrastText": "#FFFFFF",
-      "wrong": "#FF5722",
+      "error": "#FF5722",
       "success": "#4CAF50"
     },
     "borderRadius": "4px"
