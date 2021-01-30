@@ -1,10 +1,12 @@
 import styled from 'styled-components'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const OptionsBase = styled.a`
   outline: 0;
   text-decoration: none;
   color: white;
-  background-color: ${({ theme }) => `${theme.colors.primaryDark}`};
+  background-color: ${({ theme }) => `${theme.colors.primary}`};
   padding: 10px 15px;
   margin-bottom: 8px;
   width: 280px;
@@ -19,24 +21,45 @@ const OptionsBase = styled.a`
 
   &:hover,
   &:focus {
-    background-color: ${({ theme }) => `${theme.colors.primaryLight}`};
+    opacity: 0.7;
   }
 `
 
-const Options = ({alternativeId, input, alternative, user, project, dataSelected, dataStatus, as}) =>{
-  
-  return(
-    <OptionsBase
-      as={as}
-      htmlFor={alternativeId}
-      data-selected={dataSelected}
-      data-status={dataStatus}
-    >
-      {input}
-      {alternative}
-      {user && project && `${user}/${project}`}
-    </OptionsBase>
-  )
+const Options = ({
+  as, alternative, alternativeId, dataSelected, dataStatus, input, project, user,
+}) => (
+  <OptionsBase
+    as={as}
+    data-selected={dataSelected}
+    data-status={dataStatus}
+    htmlFor={alternativeId}
+  >
+    {user && project && `${user}/${project}`}
+    {input}
+    {alternative}
+  </OptionsBase>
+)
+
+Options.propTypes = {
+  as: PropTypes.string,
+  alternative: PropTypes.elementType,
+  alternativeId: PropTypes.string,
+  dataSelected: PropTypes.func,
+  dataStatus: PropTypes.bool,
+  input: PropTypes.element,
+  project: PropTypes.string,
+  user: PropTypes.string,
+}
+
+Options.defaultProps = {
+  as: '',
+  alternative: null,
+  alternativeId: '',
+  input: null,
+  dataSelected: null,
+  dataStatus: null,
+  project: '',
+  user: '',
 }
 
 export default Options

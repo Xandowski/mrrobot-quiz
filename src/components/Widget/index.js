@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import React from 'react'
 import PlayButton from '../QuizButton'
 
 const WidgetBase = styled.div`
@@ -55,13 +56,18 @@ WidgetBase.Content = styled.div`
     list-style: none;
     padding: 0;
   }
-  h1, h2, h3 {
+  h1, h2 {
     font-size: 20px;
     font-weight: normal;
     line-height: 1;
     margin-bottom: 0;
   }
-  p, h2 {
+  h3 {
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 1;
+  }
+  p, h2, h3 {
     padding: 0 7px;
   }
   p{
@@ -73,17 +79,29 @@ WidgetBase.Content = styled.div`
     justify-content: space-between;
     align-items: center;
 
+    a{
+      width: 280px;
+      background-color: ${({ theme }) => theme.colors.secondary};
+      margin-top: 5px;
+      border-radius: ${({ theme }) => theme.borderRadius};
+      height: 35px;
+      color: ${({ theme }) => theme.colors.contrastText};
+      display: flex;
+      align-items: center;
+      padding-left: 15px;
+    }
+
     label {
       color: ${({ theme }) => theme.colors.contrastText};
       &[data-selected="true"] {
-        background-color: ${({ theme }) => `${theme.colors.primaryLight}`};
+        opacity: 0.7;
 
         &[data-status="SUCCESS"] {
           background-color: ${({ theme }) => `${theme.colors.success}`};
         }
 
         &[data-status="ERROR"] {
-          background-color: ${({ theme }) => `${theme.colors.error}`};
+          background-color: ${({ theme }) => `${theme.colors.wrong}`};
         }
       }
     }
@@ -109,32 +127,29 @@ WidgetBase.Topic = styled.a`
   }
 `
 
-const Widget = ({headerTitle, description, onSubmit, element, link, disabled, text, img, question}) => {
-  return (
-    <WidgetBase>
-      <WidgetBase.Header>
-        <h1>{headerTitle}</h1>
-      </WidgetBase.Header>
-      {img &&
-        <img src={img}/>
-      }
-      <WidgetBase.Content>
-        {question &&
-          <h2>{question}</h2>
-        }
-        <div>{description}</div>
-        <form onSubmit={onSubmit}>
-          {element}
-          {text && 
-            <PlayButton disabled={disabled} text={text}/>
-          }
-        </form>
-        {link && (
-          <a href={link}>Voltar para home</a>
-        )}
-      </WidgetBase.Content>
-    </WidgetBase>
-  )
-}
+const Widget = ({
+  headerTitle, description, onSubmit, element, link, disabled, text, img, question,
+}) => (
+  <WidgetBase>
+    <WidgetBase.Header>
+      <h1>{headerTitle}</h1>
+    </WidgetBase.Header>
+    {img
+        && <img src={img} alt="gif" />}
+    <WidgetBase.Content>
+      {question
+          && <h2>{question}</h2>}
+      <h3>{description}</h3>
+      <form onSubmit={onSubmit}>
+        {element}
+        {text
+            && <PlayButton disabled={disabled} text={text} />}
+      </form>
+      {link && (
+      <a href={link}>Voltar para home</a>
+      )}
+    </WidgetBase.Content>
+  </WidgetBase>
+)
 
 export default Widget
