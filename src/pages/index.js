@@ -46,7 +46,7 @@ export default function Home() {
       quizesGalera={(
         <Widget
           headerTitle="Quizes da galera"
-          description="De uma olhada nesses outros quizes relacionados a filmes e séries, feito pelo pessoal da Imersão React:"
+          description="De uma olhada nesses outros quizes, feito pelo pessoal durante a Imersão React:"
           element={
             db.external.map((link, index) => {
               const [projectName, githubUser] = link.replace(/^(?:https?:\/\/)|(.vercel.app)/g, '').split('.')

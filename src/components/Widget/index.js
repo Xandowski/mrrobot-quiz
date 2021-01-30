@@ -23,7 +23,6 @@ const WidgetBase = styled.div`
 
 WidgetBase.Header = styled.header`
   display: flex;
-  justify-content: center;
   align-items: center;
   padding: 18px 32px;
   background-color: ${({ theme }) => theme.colors.primary};
@@ -128,10 +127,11 @@ WidgetBase.Topic = styled.a`
 `
 
 const Widget = ({
-  headerTitle, description, onSubmit, element, link, disabled, text, img, question,
+  headerTitle, description, onSubmit, element, link, disabled, text, img, question, backLink
 }) => (
   <WidgetBase>
     <WidgetBase.Header>
+      {backLink}
       <h1>{headerTitle}</h1>
     </WidgetBase.Header>
     {img

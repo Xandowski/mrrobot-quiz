@@ -11,6 +11,7 @@ import wrongAnimationData from '../../../wrongAnimation.json'
 import PageDefault from '../../components/PageDefault'
 import Options from '../../components/Options'
 import Widget from '../../components/Widget'
+import BackLinkArrow from '../../components/BackLinkArrow'
 
 const screenStates = {
   QUIZ: 'QUIZ',
@@ -18,7 +19,7 @@ const screenStates = {
   RESULT: 'RESULT',
 }
 
-const QuizScreen = ({ database }) => {
+const QuizScreen = ({ database, quizName }) => {
   const [selectedAlternative, setSelectedAlternative] = useState(undefined)
   const [isQuestionSubmited, setIsQuestionSubmited] = useState()
   const [screenState, setScreenState] = useState(screenStates.LOADING)
@@ -67,7 +68,7 @@ const QuizScreen = ({ database }) => {
   useEffect(() => {
     setTimeout(() => {
       setScreenState(screenStates.QUIZ)
-    }, 1 * 1000)
+    }, 2 * 1000)
   }, [])
 
   const handleSubmit = () => {
@@ -102,6 +103,11 @@ const QuizScreen = ({ database }) => {
           bg={database.bg}
           widget={(
             <Widget
+              backLink={
+                <BackLinkArrow
+                  href="/"
+                />
+              }
               headerTitle={`Pergunta ${questionIndex + 1} de ${database.questions.length}`}
               description={description}
               onSubmit={(e) => {
@@ -172,7 +178,7 @@ const QuizScreen = ({ database }) => {
           widget={(
             <Widget
               headerTitle="Loading"
-              description="Aguarde"
+              description={`Carregando quiz ${quizName}`}
               onSubmit={loadingScreen}
               element={(
                 <Lottie
@@ -188,8 +194,14 @@ const QuizScreen = ({ database }) => {
 
       {screenState === screenStates.RESULT && (
         <PageDefault
+          bg={database.bg}
           widget={(
             <Widget
+              backLink={
+                <BackLinkArrow
+                  href="/"
+                />
+              }
               headerTitle="Resultado"
               question={`Você fez ${points} pontos`}
               description={description}

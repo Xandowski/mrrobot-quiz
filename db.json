@@ -1,7 +1,7 @@
 {
   "bg": "/images/mr-robot.jpg",
-  "title": "Mr.Robot Quiz",
-  "description": "Teste os seus conhecimentos sobre a série Mr.Robot",
+  "title": "Mr. Robot Quiz",
+  "description": "Teste os seus conhecimentos sobre a série Mr. Robot",
   "questions": [
     {
       "image": "/images/gif-question1.webp",

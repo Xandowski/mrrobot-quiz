@@ -4,6 +4,7 @@ import db from '../../../db.json'
 const QuizPage = () => {
   return (
     <QuizScreen
+      quizName='Mr. Robot'
       database={db}
     />
   )
