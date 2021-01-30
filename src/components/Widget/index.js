@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import React from 'react'
-import PlayButton from '../QuizButton'
+import { motion } from 'framer-motion'
 
 const WidgetBase = styled.div`
   margin-top: 24px;
@@ -85,9 +85,9 @@ WidgetBase.Content = styled.div`
       border-radius: ${({ theme }) => theme.borderRadius};
       height: 35px;
       color: ${({ theme }) => theme.colors.contrastText};
-      display: flex;
+      /* display: flex;
       align-items: center;
-      padding-left: 15px;
+      padding-left: 15px; */
     }
 
     label {
@@ -127,24 +127,27 @@ WidgetBase.Topic = styled.a`
 `
 
 const Widget = ({
-  headerTitle, description, onSubmit, element, link, disabled, text, img, question, backLink
+  delay, headerTitle, description, link, img, question, backLink, yValue, children
 }) => (
-  <WidgetBase>
+  <WidgetBase
+    as={motion.section}
+    transition={{ delay: delay, duration: 0.5}}
+    variants={{
+      show: {opacity: 1, y: '0'},
+      hidden: {opacity: 0, y: `${yValue}`},
+    }}
+    initial="hidden"
+    animate="show"
+  >
     <WidgetBase.Header>
-      {backLink}
-      <h1>{headerTitle}</h1>
+      { backLink }
+      <h1>{ headerTitle }</h1>
     </WidgetBase.Header>
-    {img
-        && <img src={img} alt="gif" />}
+      { img && <img src={img} alt="gif" /> }
     <WidgetBase.Content>
-      {question
-          && <h2>{question}</h2>}
+      { question && <h2>{question}</h2> }
       <h3>{description}</h3>
-      <form onSubmit={onSubmit}>
-        {element}
-        {text
-            && <PlayButton disabled={disabled} text={text} />}
-      </form>
+     { children }
       {link && (
       <a href={link}>Voltar para home</a>
       )}

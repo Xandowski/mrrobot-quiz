@@ -1,11 +1,14 @@
-import { useRouter } from 'next/router'
-import Link from 'next/link'
 import React, { useState } from 'react'
+import { useRouter } from 'next/router'
 import db from '../../db.json'
 
-import PageDefault from '../components/PageDefault'
 import Input from '../components/Input'
+import Form from '../components/Form'
+import Options from '../components/Options'
+import Link from '../components/Link'
+import PageDefault from '../components/PageDefault'
 import Widget from '../components/Widget'
+import QuizButton from '../components/QuizButton'
 
 export default function Home() {
   const router = useRouter()
@@ -26,44 +29,57 @@ export default function Home() {
   return (
     <PageDefault
       bg={db.bg}
-      widget={(
-        <Widget
-          headerTitle={db.title}
-          description={db.description}
-          onSubmit={handleQuizPage}
-          element={(
-            <Input
-              onChange={handleName}
-              name="name"
-              type="text"
-              placeholder="Digite seu nome"
-            />
-          )}
-          disabled={name.length === 0}
+    >
+      <Widget
+        delay={0}
+        yValue="-100%"
+        headerTitle={db.title}
+        description={db.description}
+      >
+        <Form
           text="Jogar"
-        />
-      )}
-      quizesGalera={(
-        <Widget
-          headerTitle="Quizes da galera"
-          description="De uma olhada nesses outros quizes, feito pelo pessoal durante a Imersão React:"
-          element={
-            db.external.map((link, index) => {
-              const [projectName, githubUser] = link.replace(/^(?:https?:\/\/)|(.vercel.app)/g, '').split('.')
-              return (
-                <Link
-                  key={index}
-                  href={`/quiz/${projectName}.${githubUser}`}
-                >
-                  <a>
-                    {`${githubUser}/${projectName}`}
-                  </a>
-                </Link>
-              )
-            })
-          }
-        />
-      )}
-    />
+          onSubmit={handleQuizPage}
+          disabled={name.length === 0}
+        >
+          <Input
+            onChange={handleName}
+            name="name"
+            type="text"
+            placeholder="Digite seu nome"
+          />
+        </Form>
+      </Widget>
+      <Widget
+        delay={0.5}
+        yValue="100%"
+        headerTitle="Quizes da galera"
+        description="De uma olhada nesses outros quizes, feito pelo pessoal durante a Imersão React:"
+      >
+        {
+          db.external.map((link, index) => {
+            const [projectName, githubUser] = link.replace(/^(?:https?:\/\/)|(.vercel.app)/g, '').split('.')
+            return (
+              // <Link
+              //   key={index}
+              //   href={`/quiz/${projectName}.${githubUser}`}
+              // >
+                
+              // </Link>
+              <Options
+                user={githubUser}
+                project={projectName}
+                href={`/quiz/${projectName}.${githubUser}`}
+              >
+              </Options>
+            )
+          })
+        }
+        <Options
+          button={true}
+          input="Vitrine da Alura"
+          href="https://aluraquiz-base.alura-challenges.vercel.app/contribuidores"
+        ></Options>
+      </Widget>
+    </PageDefault>
   )
 }

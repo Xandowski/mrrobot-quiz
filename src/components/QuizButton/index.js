@@ -25,9 +25,14 @@ const Button = styled.button`
   }
   }
 `
-const PlayButton = ({disabled, text}) => {
+const PlayButton = ({disabled, text, as, href}) => {
   return (
-    <Button type='submit' disabled={disabled}>
+    <Button
+      as={as}
+      href={href}
+      type='submit' 
+      disabled={disabled}
+    >
       {text}
     </Button>
   )

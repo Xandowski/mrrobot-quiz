@@ -46,7 +46,7 @@ export default function Footer(props) {
       </div>
       <span>
         by
-        <a href="https://github.com/Xandowski">Xandowski</a>
+        <a href="https://github.com/Xandowski"> Xandowski</a>
       </span>
     </FooterWrapper>
   )

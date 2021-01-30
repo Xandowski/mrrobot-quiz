@@ -8,6 +8,7 @@
     "lint": "eslint  ./ --fix"
   },
   "dependencies": {
+    "framer-motion": "^3.2.2-rc.1",
     "next": "latest",
     "next-images": "^1.7.0",
     "nextjs-fonts": "^0.22.0",

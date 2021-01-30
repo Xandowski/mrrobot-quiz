@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import PropTypes from 'prop-types'
 import { ThemeProvider } from 'styled-components'
 
 import Lottie from 'react-lottie'
@@ -9,6 +8,7 @@ import correctAnimationData from '../../../correctAnimation.json'
 import wrongAnimationData from '../../../wrongAnimation.json'
 
 import PageDefault from '../../components/PageDefault'
+import Form from '../../components/Form'
 import Options from '../../components/Options'
 import Widget from '../../components/Widget'
 import BackLinkArrow from '../../components/BackLinkArrow'
@@ -32,7 +32,6 @@ const QuizScreen = ({ database, quizName }) => {
   const [description, setDescription] = useState(question.description)
   const isCorrect = selectedAlternative === question.answer
   const hasAlternativeSelected = selectedAlternative !== undefined
-
   const [points, setPoints] = useState(0)
 
   const defaultOptions = {
@@ -101,18 +100,25 @@ const QuizScreen = ({ database, quizName }) => {
       {screenState === screenStates.QUIZ && (
         <PageDefault
           bg={database.bg}
-          widget={(
-            <Widget
-              backLink={
-                <BackLinkArrow
-                  href="/"
-                />
-              }
-              headerTitle={`Pergunta ${questionIndex + 1} de ${database.questions.length}`}
-              description={description}
+        >
+          <Widget
+            backLink={
+              <BackLinkArrow
+                href="/"
+              />
+            }
+            headerTitle={`Pergunta ${questionIndex + 1} de ${database.questions.length}`}
+            description={description}
+            img={image}
+            question={question.title}
+            disabled={!hasAlternativeSelected}
+          >
+            <Form
+              text="Confirmar"
+              disabled={!hasAlternativeSelected}
               onSubmit={(e) => {
                 e.preventDefault()
-
+  
                 if (selectedAlternative === question.answer) {
                   setPoints(points + 10)
                   setImage('/images/gif-correct-question.webp')
@@ -139,7 +145,8 @@ const QuizScreen = ({ database, quizName }) => {
                   handleSubmit()
                 }, 2 * 1000)
               }}
-              element={
+            >
+              {
                 question.alternatives.map((alternative, index) => {
                   const alternativeId = `alternative__${index}`
                   const alternativeStatus = isCorrect ? 'SUCCESS' : 'ERROR'
@@ -164,68 +171,50 @@ const QuizScreen = ({ database, quizName }) => {
                   )
                 })
               }
-              text="Confirmar"
-              img={image}
-              question={question.title}
-              disabled={!hasAlternativeSelected}
-            />
-          )}
-        />
+            </Form>
+          </Widget>
+        </PageDefault>
       )}
 
       {screenState === screenStates.LOADING && (
         <PageDefault
-          widget={(
-            <Widget
+        >
+          <Widget
               headerTitle="Loading"
               description={`Carregando quiz ${quizName}`}
               onSubmit={loadingScreen}
-              element={(
-                <Lottie
-                  options={defaultOptions}
-                  height={250}
-                  width={250}
-                />
-              )}
-            />
-          )}
-        />
+            >
+              <Lottie
+                options={defaultOptions}
+                height={250}
+                width={250}
+              />
+            </Widget>
+        </PageDefault>
       )}
 
       {screenState === screenStates.RESULT && (
         <PageDefault
           bg={database.bg}
-          widget={(
-            <Widget
-              backLink={
-                <BackLinkArrow
-                  href="/"
-                />
-              }
-              headerTitle="Resultado"
-              question={`Você fez ${points} pontos`}
-              description={description}
-              onSubmit={loadResults}
-              element={
-                <h1>Ranking</h1>
-              }
-              text="Adicionar ao meu projeto"
-              link="/"
-            />
-          )}
-        />
+        >
+          <Widget
+            backLink={
+              <BackLinkArrow
+                href="/"
+              />
+            }
+            headerTitle="Resultado"
+            question={`Você fez ${points} pontos`}
+            description={description}
+            onSubmit={loadResults}
+            text="Adicionar ao meu projeto"
+            link="/"
+          ><h1>Ranking</h1></Widget>
+        </PageDefault>
       )}
     </ThemeProvider>
     </>
   )
-}
-
-Options.propTypes = {
-  database: PropTypes.shape,
-}
-
-Options.defaultProps = {
-  database: null,
 }
 
 export default QuizScreen
