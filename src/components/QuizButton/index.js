@@ -12,6 +12,9 @@ const Button = styled.button`
   letter-spacing: 2px;
   text-transform: uppercase;
   border-radius: ${({ theme }) => theme.borderRadius};
+  display: ${props => props.as === 'a' ? 'flex' : 'block'};
+  justify-content: center;
+  align-items: center;
 
   &:hover{
     cursor: pointer;
@@ -22,7 +25,7 @@ const Button = styled.button`
   
     &:hover{
       cursor: auto;
-  }
+    }
   }
 `
 const PlayButton = ({disabled, text, as, href}) => {

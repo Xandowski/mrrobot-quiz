@@ -5,10 +5,9 @@ import db from '../../db.json'
 import Input from '../components/Input'
 import Form from '../components/Form'
 import Options from '../components/Options'
-import Link from '../components/Link'
 import PageDefault from '../components/PageDefault'
-import Widget from '../components/Widget'
 import QuizButton from '../components/QuizButton'
+import Widget from '../components/Widget'
 
 export default function Home() {
   const router = useRouter()
@@ -74,11 +73,11 @@ export default function Home() {
             )
           })
         }
-        <Options
-          button={true}
-          input="Vitrine da Alura"
+        <QuizButton
+          as="a"
           href="https://aluraquiz-base.alura-challenges.vercel.app/contribuidores"
-        ></Options>
+          text="Vitrine alura"
+        />
       </Widget>
     </PageDefault>
   )

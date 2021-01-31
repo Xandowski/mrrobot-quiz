@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import React from 'react'
 import { motion } from 'framer-motion'
 
+
 const WidgetBase = styled.div`
   margin-top: 24px;
   margin-bottom: 24px;
@@ -24,6 +25,7 @@ const WidgetBase = styled.div`
 WidgetBase.Header = styled.header`
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   padding: 18px 32px;
   background-color: ${({ theme }) => theme.colors.primary};
   h1, h2, h3 {
@@ -33,7 +35,7 @@ WidgetBase.Header = styled.header`
     line-height: 1;
     margin-bottom: 0;
   }
-  
+
   * {
     margin: 0;
   }
@@ -72,39 +74,7 @@ WidgetBase.Content = styled.div`
   p{
     width: 100%;
   }
-  form{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-
-    a{
-      width: 280px;
-      background-color: ${({ theme }) => theme.colors.secondary};
-      margin-top: 5px;
-      border-radius: ${({ theme }) => theme.borderRadius};
-      height: 35px;
-      color: ${({ theme }) => theme.colors.contrastText};
-      /* display: flex;
-      align-items: center;
-      padding-left: 15px; */
-    }
-
-    label {
-      color: ${({ theme }) => theme.colors.contrastText};
-      &[data-selected="true"] {
-        opacity: 0.7;
-
-        &[data-status="SUCCESS"] {
-          background-color: ${({ theme }) => `${theme.colors.success}`};
-        }
-
-        &[data-status="ERROR"] {
-          background-color: ${({ theme }) => `${theme.colors.wrong}`};
-        }
-      }
-    }
-  }
+  
 `
 
 WidgetBase.Topic = styled.a`
@@ -128,31 +98,33 @@ WidgetBase.Topic = styled.a`
 
 const Widget = ({
   delay, headerTitle, description, link, img, question, backLink, yValue, children
-}) => (
-  <WidgetBase
-    as={motion.section}
-    transition={{ delay: delay, duration: 0.5}}
-    variants={{
-      show: {opacity: 1, y: '0'},
-      hidden: {opacity: 0, y: `${yValue}`},
-    }}
-    initial="hidden"
-    animate="show"
-  >
-    <WidgetBase.Header>
-      { backLink }
-      <h1>{ headerTitle }</h1>
-    </WidgetBase.Header>
-      { img && <img src={img} alt="gif" /> }
-    <WidgetBase.Content>
-      { question && <h2>{question}</h2> }
-      <h3>{description}</h3>
-     { children }
-      {link && (
-      <a href={link}>Voltar para home</a>
-      )}
-    </WidgetBase.Content>
-  </WidgetBase>
-)
+}) => {
+  return (
+    <WidgetBase
+      as={motion.section}
+      transition={{ delay: delay, duration: 0.5}}
+      variants={{
+        show: {opacity: 1, y: '0'},
+        hidden: {opacity: 0, y: `${yValue}`},
+      }}
+      initial="hidden"
+      animate="show"
+    >
+      <WidgetBase.Header>
+        { backLink }
+        <h1>{ headerTitle }</h1>
+      </WidgetBase.Header>
+        { img && <img src={img} alt="gif" /> }
+      <WidgetBase.Content>
+        { question && <h2>{question}</h2> }
+        <h3>{description}</h3>
+      { children }
+        {link && (
+        <a href={link}>Voltar para home</a>
+        )}
+      </WidgetBase.Content>
+    </WidgetBase>
+  )
+}
 
 export default Widget
