@@ -97,7 +97,7 @@ WidgetBase.Topic = styled.a`
 `
 
 const Widget = ({
-  delay, headerTitle, description, link, img, question, backLink, yValue, children
+  delay, headerTitle, description, img, question, backLink, yValue, children
 }) => {
   return (
     <WidgetBase
@@ -119,9 +119,6 @@ const Widget = ({
         { question && <h2>{question}</h2> }
         <h3>{description}</h3>
       { children }
-        {link && (
-        <a href={link}>Voltar para home</a>
-        )}
       </WidgetBase.Content>
     </WidgetBase>
   )

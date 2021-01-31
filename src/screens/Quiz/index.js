@@ -33,7 +33,7 @@ const QuizScreen = ({ database, quizName }) => {
   const [description, setDescription] = useState(question.description)
   const isCorrect = selectedAlternative === question.answer
   const hasAlternativeSelected = selectedAlternative !== undefined
-  const [points, setPoints] = useState(0)
+  let points = 0
   const maxPoints = 10 * database.questions.length
   const [questionResults, setQuestionResults] = useState([])
 
@@ -69,24 +69,22 @@ const QuizScreen = ({ database, quizName }) => {
 
   useEffect(() => {
     setTimeout(() => {
+      setQuestionResults([])
       setScreenState(screenStates.QUIZ)
     }, 2 * 1000)
   }, [])
 
   const handleSubmit = () => {
-    if (questionIndex === 4) {
+    if (questionIndex < database.questions.length - 1) {
+      setQuestionIndex(questionIndex + 1)
+      setImage(database.questions[questionIndex + 1].image)
+      setDescription(database.questions[questionIndex + 1].description)
+      setDescription(name)
+      
+    } else {
       setQuestionIndex(0)
       setScreenState(screenStates.RESULT)
-      setDescription(name)
-      handleResults(points)
-      setPoints(0)
-      return
     }
-    setQuestionIndex(questionIndex + 1)
-    setImage(database.questions[questionIndex + 1].image)
-    setDescription(database.questions[questionIndex + 1].description)
-    setScreenState(screenStates.QUIZ)
-    setSelectedAlternative(undefined)
   }
 
   const loadingScreen = (e) => {
@@ -108,18 +106,6 @@ const QuizScreen = ({ database, quizName }) => {
   }
 
   const [result, setResult] = useState('')
-
-  const handleResults = (points) => {
-    if(points <= (20/100) * maxPoints ) {
-      setResult(`${name}, parece que você não assistiu a série fez apenas ${points} pontos`)
-      return
-    } else if (points > (20/100) * maxPoints && points <= (60/100) * maxPoints) {
-      setResult(`${name} você prestou atenção na séie?Fez ${points} pontos`)
-      return
-    }
-    setResult(`Muito bem ${name} parece que você conhece a série fez ${points} pontos`)
-    return
-  }
 
   return (
     <>
@@ -147,7 +133,8 @@ const QuizScreen = ({ database, quizName }) => {
                 e.preventDefault()
   
                 if (selectedAlternative === question.answer) {
-                  setPoints(points + 10)
+                  points = points + 10
+                  console.log(points);
                   setImage('/images/gif-correct-question.webp')
                   setDescription(
                     <Lottie
@@ -168,9 +155,10 @@ const QuizScreen = ({ database, quizName }) => {
                 }
                 setIsQuestionSubmited(true)
                 setTimeout(() => {
+                  handleSubmit()
                   addResult(isCorrect)
                   setIsQuestionSubmited(false)
-                  handleSubmit()
+                  setSelectedAlternative(undefined)
                 }, 2 * 1000)
               }}
             >
@@ -233,15 +221,24 @@ const QuizScreen = ({ database, quizName }) => {
                 href="/"
               />
             }
+            onLoad
             headerTitle="Resultado"
-            question={result}
+            question={
+              questionResults.filter((questionResult) => questionResult).length * 10 > (60/100) * maxPoints &&
+              `Muito bem ${name}, parece que você conhece sobre o assunto você fez ${questionResults.filter((questionResult) => questionResult).length * 10} pontos`
+              ||
+              questionResults.filter((questionResult) => questionResult).length * 10 > (20/100) * maxPoints &&
+              `${name} parece que você não entende muito sobre este assunto, você fez ${questionResults.filter((questionResult) => questionResult).length * 10} pontos`
+              ||
+              questionResults.filter((questionResult) => questionResult).length * 10 <= (20/100) * maxPoints &&
+              `${name}, você precisa conhecer mais sobre este assunto fez apenas ${questionResults.filter((questionResult) => questionResult).length * 10} pontos`
+            }
             description="Confira as questões:"
             onSubmit={loadResults}
-            text="Adicionar ao meu projeto"
-            link="/"
           >
             {
               questionResults.map((questionResult, index) => (
+                
                 <Options
                   as="label"
                   isLabelResult={true}
