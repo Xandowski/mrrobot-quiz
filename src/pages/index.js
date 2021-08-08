@@ -55,21 +55,14 @@ export default function Home() {
         description="De uma olhada nesses outros quizes, feito pelo pessoal durante a Imersão React:"
       >
         {
-          db.external.map((link, index) => {
+          db.external.map((link) => {
             const [projectName, githubUser] = link.replace(/^(?:https?:\/\/)|(.vercel.app)/g, '').split('.')
             return (
-              // <Link
-              //   key={index}
-              //   href={`/quiz/${projectName}.${githubUser}`}
-              // >
-                
-              // </Link>
               <Options
                 user={githubUser}
                 project={projectName}
                 href={`/quiz/${projectName}.${githubUser}`}
-              >
-              </Options>
+              />
             )
           })
         }
